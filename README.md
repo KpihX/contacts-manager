@@ -57,7 +57,9 @@ Pour juste l'exécuter, il faut:
 
 ### Author ✍️
 
-Ce peojet a été réalisé l'étudiant: **KAMDEM POUOKAM Ivann Harold du 3GI à l'ENSPY.**
+Ce projet a été réalisé l'étudiant: **KAMDEM POUOKAM Ivann Harold du 3GI à l'ENSPY.** 
+
+Matricule: **21P254**
 
 ## License 📄
 
