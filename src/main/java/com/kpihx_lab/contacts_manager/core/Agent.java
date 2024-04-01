@@ -4,6 +4,9 @@
  */
 package com.kpihx_lab.contacts_manager.core;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 /**
@@ -77,6 +80,31 @@ public class Agent extends Contact {
     
     public static String[] getRepertoireAgentsLabel() {
         return repertoireAgentsLabel;
+    }
+    
+    @Override
+    public void insererContact(Connection connection) throws SQLException {
+        String sql = "INSERT INTO Agent (code, nom, dateNaissance, address, email, telNumber, salaire, statut, categorie, indiceSalaire, occupation)"+
+             "SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? "+
+             "WHERE NOT EXISTS ("+
+             "SELECT 1 FROM Agent WHERE code = ?"+
+             ")";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, getCode());
+            statement.setString(2, getNom());
+            statement.setDate(3, new java.sql.Date(getDateDeNaissance().getTime()));
+            statement.setString(4, getAdresse());
+            statement.setString(5, getEmail());
+            statement.setString(6, getTelNumber());
+            statement.setDouble(7, getSalaire());
+            statement.setString(8, getStatut());
+            statement.setString(9, getCategorie());
+            statement.setInt(10, getIndiceSalaire());
+            statement.setString(11, getOccupation());
+            statement.setString(12, getCode());
+
+            statement.executeUpdate();
+        }
     }
 
     @Override

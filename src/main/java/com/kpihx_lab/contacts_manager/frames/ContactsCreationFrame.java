@@ -135,6 +135,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        codeText.setText("d");
         codeText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 codeTextFocusLost(evt);
@@ -146,12 +147,14 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        nameText.setText("f");
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextActionPerformed(evt);
             }
         });
 
+        telText.setText("556");
         telText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telTextActionPerformed(evt);
@@ -183,6 +186,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        birthYearText.setText("2003");
         birthYearText.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 birthYearTextFocusLost(evt);
@@ -194,6 +198,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        addressText.setText("d");
         addressText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTextActionPerformed(evt);

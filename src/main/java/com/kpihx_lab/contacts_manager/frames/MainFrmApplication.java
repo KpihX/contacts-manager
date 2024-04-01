@@ -4,6 +4,10 @@
  */
 package com.kpihx_lab.contacts_manager.frames;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import com.kpihx_lab.contacts_manager.core.*;
 
 /**
@@ -12,6 +16,7 @@ import com.kpihx_lab.contacts_manager.core.*;
  */
 public class MainFrmApplication extends javax.swing.JFrame {
     private Repertoire repertoire;
+    private static Connection connection;
 
     /**
      * Creates new form MainFrmApplication
@@ -33,6 +38,10 @@ public class MainFrmApplication extends javax.swing.JFrame {
         welcomeMessage = new javax.swing.JLabel();
         buttonAddContact = new javax.swing.JButton();
         buttonShowContacts = new javax.swing.JButton();
+        notificationLabel = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        saveMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,19 +61,45 @@ public class MainFrmApplication extends javax.swing.JFrame {
             }
         });
 
+        notificationLabel.setText("jLabel1");
+
+        fileMenu.setText("File");
+        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileMenuActionPerformed(evt);
+            }
+        });
+
+        saveMenu.setText("Enregistrer");
+        saveMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuActionPerformed(evt);
+            }
+        });
+        fileMenu.add(saveMenu);
+
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(278, 278, 278)
                 .addComponent(buttonAddContact)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonShowContacts)
                 .addGap(68, 68, 68))
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(welcomeMessage)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(welcomeMessage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,7 +111,9 @@ public class MainFrmApplication extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAddContact)
                     .addComponent(buttonShowContacts))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(notificationLabel)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -92,10 +129,42 @@ public class MainFrmApplication extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_buttonShowContactsActionPerformed
 
+    private void saveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuActionPerformed
+        notificationLabel.setText("Hi");        
+        try {
+            enregistrer();
+            notificationLabel.setText("L'enregistremnt s'est bien passé!");
+        } catch( SQLException ex) {
+            ex.printStackTrace();
+            notificationLabel.setText(ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_saveMenuActionPerformed
+
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileMenuActionPerformed
+
+    public void enregistrer() throws SQLException {
+        for (Contact contact: repertoire.getContacts()) {
+            contact.insererContact(connection);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        String url = "jdbc:mysql://localhost:3306/contacts_db";
+        String user = "root";
+        String password = "|yOUkNOW0";
+        try {
+            connection = DriverManager.getConnection(url, user, password);
+        } catch (SQLException ex) {
+            System.err.println("Erreur lors de la connextion à la BD: " + ex.getMessage());
+            return;
+        }
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -125,6 +194,9 @@ public class MainFrmApplication extends javax.swing.JFrame {
                 new MainFrmApplication(new Repertoire()).setVisible(true);
             }
         });
+        
+        
+        
     }
     
     public Repertoire getRepertoire() {
@@ -134,6 +206,10 @@ public class MainFrmApplication extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAddContact;
     private javax.swing.JButton buttonShowContacts;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JLabel notificationLabel;
+    private javax.swing.JMenuItem saveMenu;
     private javax.swing.JLabel welcomeMessage;
     // End of variables declaration//GEN-END:variables
 }

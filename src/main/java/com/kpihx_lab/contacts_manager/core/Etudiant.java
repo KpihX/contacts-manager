@@ -4,6 +4,9 @@
  */
 package com.kpihx_lab.contacts_manager.core;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -46,6 +49,27 @@ public class Etudiant extends Contact {
 
     public static String[] getRepertoireEtudiantsLabel() {
         return repertoireEtudiantsLabel;
+    }
+    
+    @Override
+    public void insererContact(Connection connection) throws SQLException{
+        String insertion = "INSERT INTO Etudiant (code, nom, dateNaissance, address, email, telNumber, cycle, niveau)"+
+                "SELECT ?, ?, ?, ?, ?, ?, ?, ?"+
+             "WHERE NOT EXISTS ("+
+             "SELECT 1 FROM Etudiant WHERE code = ?"+
+             ")";
+        try (PreparedStatement statement = connection.prepareStatement(insertion)){
+            statement.setString(1, getCode());
+            statement.setString(2, getNom());
+            statement.setDate(3, new java.sql.Date(getDateDeNaissance().getTime()));
+            statement.setString(4, getAdresse());
+            statement.setString(5, getEmail());
+            statement.setString(6, getTelNumber());
+            statement.setString(7, getCycle());
+            statement.setString(8, getNiveau());
+            statement.setString(9, getCode());
+            statement.executeUpdate();
+        }
     }
     
     @Override

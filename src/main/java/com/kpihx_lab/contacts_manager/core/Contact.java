@@ -5,12 +5,14 @@
 package com.kpihx_lab.contacts_manager.core;
 
 import java.util.Date;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
  * @author kpihx
  */
-public class Contact {
+abstract public class Contact {
     private final static String[] contactsTypes = new String[]{"Agent", "Enseignant", "Etudiant"};
     private String code;
     private String nom;
@@ -27,6 +29,8 @@ public class Contact {
         this.email = email;
         this.telNumber = telNumber;
     }
+    
+    public abstract void insererContact(Connection connection) throws SQLException;
 
     // Getters et Setters pour Contact
     public String getCode() {

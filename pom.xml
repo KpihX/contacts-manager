@@ -5,10 +5,17 @@
     <artifactId>contacts-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.2.0</version>
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>com.kpihx_lab.contacts_manager.MainApplication</exec.mainClass>
+        <exec.mainClass>com.kpihx_lab.contacts_manager.frames.MainFrmApplication</exec.mainClass>
     </properties>
 </project>

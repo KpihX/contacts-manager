@@ -1,6 +1,7 @@
 com/kpihx_lab/contacts_manager/frames/ContactsCreationFrame$2.class
 com/kpihx_lab/contacts_manager/frames/MainFrmApplication.class
 com/kpihx_lab/contacts_manager/frames/EnseignantCreationFrame$5.class
+com/kpihx_lab/contacts_manager/frames/MainFrmApplication$4.class
 com/kpihx_lab/contacts_manager/frames/MainFrmApplication$1.class
 com/kpihx_lab/contacts_manager/frames/ContactsCreationFrame$9.class
 com/kpihx_lab/contacts_manager/frames/AgentsCreationFrame$8.class
@@ -49,6 +50,7 @@ com/kpihx_lab/contacts_manager/frames/ContactsCreationFrame$8.class
 com/kpihx_lab/contacts_manager/frames/AgentsCreationFrame$9.class
 com/kpihx_lab/contacts_manager/frames/EtudiantCreationFrame$4.class
 com/kpihx_lab/contacts_manager/frames/EnseignantCreationFrame$6.class
+com/kpihx_lab/contacts_manager/frames/MainFrmApplication$5.class
 com/kpihx_lab/contacts_manager/frames/ContactsCreationFrame$5.class
 com/kpihx_lab/contacts_manager/frames/EtudiantCreationFrame.class
 com/kpihx_lab/contacts_manager/frames/ContactsCreationFrame$14.class

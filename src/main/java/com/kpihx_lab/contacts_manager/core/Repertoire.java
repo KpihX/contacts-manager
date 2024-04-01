@@ -103,4 +103,8 @@ public class Repertoire {
         sb.append("]");
         return sb.toString();
     }
+    
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
 }
