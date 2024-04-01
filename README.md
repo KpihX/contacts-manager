@@ -13,7 +13,7 @@ Ce projet réalisé en Java, offre une interface graphique pour gerer un reperto
 
 - Ce projet dépend comme on peut le voir dans pom.xml de *mysql-connector-j version 8.2.0* qui est déjà présent dans le projet.
 
-- Le script de création de la BD se trouve dans `src/main/ressources` et se nomme `schema_deb.sql.`
+- Le script de création de la BD se trouve dans `src/main/ressources` et se nomme `schema_db.sql.`
 
 ## Execution 🚀
 
