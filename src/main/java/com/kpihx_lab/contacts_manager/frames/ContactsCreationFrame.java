@@ -19,7 +19,6 @@ import com.kpihx_lab.contacts_manager.core.*;
 public class ContactsCreationFrame extends javax.swing.JFrame {
     private MainFrmApplication mainFrmApplication;
     private Repertoire repertoire;
-    private Date birth;
     private int birthYear;
     private String code, name, email, tel, birthDay, birthMonth, address;
     private String contactType;
@@ -56,19 +55,19 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         telLabel = new javax.swing.JLabel();
         typeContactComboBox = new javax.swing.JComboBox<>(Contact.getContactsTypes());
-        jLabel6 = new javax.swing.JLabel();
+        typeContactLabel = new javax.swing.JLabel();
         continueButton = new javax.swing.JButton();
         previousButton = new javax.swing.JButton();
         codeText = new javax.swing.JTextField();
         nameText = new javax.swing.JTextField();
         telText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
-        notificationText = new javax.swing.JTextField();
         birthDayComboBox = new javax.swing.JComboBox<>(DateUtils.days);
         birthMonthComboBox = new javax.swing.JComboBox<>(DateUtils.months);
         birthYearText = new javax.swing.JTextField();
         addressText = new javax.swing.JTextField();
         addressLabel = new javax.swing.JLabel();
+        notificationLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -97,6 +96,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
         birthText.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ajout de Contacts");
 
         codeLabel.setText("Code");
 
@@ -119,7 +119,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Type contact");
+        typeContactLabel.setText("Type de contact");
 
         continueButton.setText("Continuer");
         continueButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +135,10 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        codeText.setText("d");
         codeText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                codeTextFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 codeTextFocusLost(evt);
             }
@@ -147,14 +149,12 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        nameText.setText("f");
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextActionPerformed(evt);
             }
         });
 
-        telText.setText("556");
         telText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telTextActionPerformed(evt);
@@ -165,12 +165,6 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
         emailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailTextActionPerformed(evt);
-            }
-        });
-
-        notificationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationTextActionPerformed(evt);
             }
         });
 
@@ -186,8 +180,11 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        birthYearText.setText("2003");
+        birthYearText.setText("yyyy");
         birthYearText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                birthYearTextFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 birthYearTextFocusLost(evt);
             }
@@ -198,7 +195,6 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        addressText.setText("d");
         addressText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTextActionPerformed(evt);
@@ -207,96 +203,95 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
 
         addressLabel.setText("Addresse");
 
+        notificationLabel.setText("Notifications:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailLabel)
-                            .addComponent(telLabel)
-                            .addComponent(jLabel6)
-                            .addComponent(nameLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeContactComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameText)
-                            .addComponent(telText)
-                            .addComponent(emailText)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(birthLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(birthDayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(birthMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(birthYearText, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codeLabel)
-                            .addComponent(addressLabel))
-                        .addGap(157, 157, 157)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codeText)
-                            .addComponent(addressText))))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 175, Short.MAX_VALUE)
+                .addGap(112, 112, 112)
                 .addComponent(previousButton)
-                .addGap(123, 123, 123)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(continueButton)
-                .addGap(97, 97, 97))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(119, 119, 119))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(telLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameLabel)
+                            .addComponent(birthLabel)
+                            .addComponent(addressLabel)
+                            .addComponent(emailLabel)
+                            .addComponent(codeLabel)))
+                    .addComponent(typeContactLabel))
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeContactComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(codeText)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(birthDayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(birthMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(birthYearText))
+                        .addComponent(emailText)
+                        .addComponent(addressText)
+                        .addComponent(telText, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(nameText)))
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addComponent(notificationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codeLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(birthDayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(birthMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(birthYearText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(birthLabel))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addressLabel))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeLabel)
-                    .addComponent(codeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(birthLabel)
-                    .addComponent(birthDayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(birthMonthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(birthYearText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailLabel))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(emailLabel)
-                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(telLabel)
-                    .addComponent(telText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(typeContactComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(previousButton)
-                    .addComponent(continueButton))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(telLabel)
+                            .addComponent(telText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(typeContactLabel)
+                            .addComponent(typeContactComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(previousButton)
+                            .addComponent(continueButton))
+                        .addGap(29, 29, 29)))
+                .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void telLabelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_telLabelComponentHidden
@@ -315,7 +310,8 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             telTextActionPerformed(evt);
             typeContactComboBoxActionPerformed(evt);
         } catch (IllegalArgumentException ex) {
-            notificationText.setText(ex.getMessage());
+            notificationLabel.setText("Erreur: " + ex.getMessage());
+            return;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date birth;
@@ -323,10 +319,10 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
             String dateFormated = birthDay + "/" + (Arrays.asList(DateUtils.months).indexOf(birthMonth) + 1) + "/" + birthYear;
             birth = dateFormat.parse(dateFormated);
         } catch (ParseException ex) {
-            notificationText.setText(ex.getMessage());
+            notificationLabel.setText("Erreur: " + ex.getMessage());
             return;
         }
-        notificationText.setText(contactType);
+        
         switch (contactType) {
             case "Agent":
                 new AgentsCreationFrame(this, code, name, birth, address, email, tel).setVisible(true);
@@ -368,7 +364,7 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
     private void codeTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeTextFocusLost
         code = codeText.getText();
         if (repertoire.rechercherContact(code) != null) {
-            notificationText.setText("Le code entré existe déjà!");
+            notificationLabel.setText("Erreur: " + "Le code entré existe déjà!");
         }
     }//GEN-LAST:event_codeTextFocusLost
 
@@ -379,10 +375,6 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
     private void typeContactComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeContactComboBoxActionPerformed
         contactType = (String) typeContactComboBox.getSelectedItem();
     }//GEN-LAST:event_typeContactComboBoxActionPerformed
-
-    private void notificationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationTextActionPerformed
-        notificationText.setText("Veuillez entrer les informations générales du nouveau contact!");
-    }//GEN-LAST:event_notificationTextActionPerformed
 
     private void birthDayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthDayComboBoxActionPerformed
         birthDay = (String) birthDayComboBox.getSelectedItem();
@@ -407,16 +399,24 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
         try {
             birthYear = Integer.valueOf(birthYearText.getText());
             if (birthYear < minimalBirthYear || birthYear > currentYear) {
-                notificationText.setText("L'année de naissance doit être entre " + minimalBirthYear + " et " + currentYear + "!");
+                notificationLabel.setText("Erreur: L'année de naissance doit être entre " + minimalBirthYear + " et " + currentYear + "!");
             }
         } catch (NumberFormatException ex) {
-            notificationText.setText("L'année de naissance doit être entre " + minimalBirthYear + " et " + currentYear + "!");
+            notificationLabel.setText("Erreur: L'année de naissance doit être entre " + minimalBirthYear + " et " + currentYear + "!");
         }
     }//GEN-LAST:event_birthYearTextFocusLost
 
     private void addressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextActionPerformed
         address = addressText.getText();
     }//GEN-LAST:event_addressTextActionPerformed
+
+    private void codeTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeTextFocusGained
+        notificationLabel.setText("Notifation:");
+    }//GEN-LAST:event_codeTextFocusGained
+
+    private void birthYearTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_birthYearTextFocusGained
+        notificationLabel.setText("Notifation:");
+    }//GEN-LAST:event_birthYearTextFocusGained
 
     public Repertoire getRepertoire() {
         return repertoire;
@@ -475,17 +475,17 @@ public class ContactsCreationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameText;
-    private javax.swing.JTextField notificationText;
+    private javax.swing.JLabel notificationLabel;
     private javax.swing.JButton previousButton;
     private javax.swing.JLabel telLabel;
     private javax.swing.JTextField telText;
     private javax.swing.JComboBox<String> typeContactComboBox;
+    private javax.swing.JLabel typeContactLabel;
     // End of variables declaration//GEN-END:variables
 }

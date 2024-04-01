@@ -68,7 +68,11 @@ public class Etudiant extends Contact {
             statement.setString(7, getCycle());
             statement.setString(8, getNiveau());
             statement.setString(9, getCode());
-            statement.executeUpdate();
+            
+            int result = statement.executeUpdate();
+            if (result == 0) {
+                throw new SQLException("L'enregistrement n'a pas eu lieu car il existe déjà un agent avec la même clé");
+            }
         }
     }
     

@@ -51,21 +51,22 @@ public class EtudiantCreationFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuButton1 = new javax.swing.JButton();
+        menuButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         cycleComboBox = new javax.swing.JComboBox<>(Etudiant.getCycles());
         createButton = new javax.swing.JButton();
-        notificationText = new javax.swing.JTextField();
         cycleLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
         levelText = new javax.swing.JTextField();
+        notificationLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ajout Etudiant");
 
-        menuButton1.setText("Menu Principal");
-        menuButton1.addActionListener(new java.awt.event.ActionListener() {
+        menuButton.setText("Menu Principal");
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton1ActionPerformed(evt);
+                menuButtonActionPerformed(evt);
             }
         });
 
@@ -82,16 +83,10 @@ public class EtudiantCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        createButton.setText("Creer");
+        createButton.setText("Finaliser");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
-            }
-        });
-
-        notificationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationTextActionPerformed(evt);
             }
         });
 
@@ -105,61 +100,64 @@ public class EtudiantCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        notificationLabel.setText("Notifications:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(notificationLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cycleLabel)
-                    .addComponent(levelLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cycleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(levelText, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(notificationText))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(menuButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
-                        .addComponent(returnButton)))
-                .addGap(44, 44, 44)
-                .addComponent(createButton))
+                        .addGap(238, 238, 238)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cycleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(levelText, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cycleLabel)
+                                    .addComponent(levelLabel))
+                                .addGap(323, 323, 323))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(menuButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(returnButton)
+                                .addGap(50, 50, 50)
+                                .addComponent(createButton)))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cycleLabel)
                     .addComponent(cycleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(levelLabel)
                     .addComponent(levelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
-                    .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menuButton1)
-                    .addComponent(returnButton))
-                .addGap(385, 385, 385))
+                    .addComponent(returnButton)
+                    .addComponent(menuButton))
+                .addGap(28, 28, 28)
+                .addComponent(notificationLabel))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton1ActionPerformed
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         contactsCreationFrame.getMainFrmApplication().setVisible(true);
         dispose();
-    }//GEN-LAST:event_menuButton1ActionPerformed
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         contactsCreationFrame.setVisible(true);
@@ -174,15 +172,15 @@ public class EtudiantCreationFrame extends javax.swing.JFrame {
         cycleComboBoxActionPerformed(evt);
         levelTextActionPerformed(evt);
 
-        repertoire.ajouterContact(new Etudiant(code, name, birth, address, email, tel, cycle, level));
-        notificationText.setText("Le contact a bien été ajouté!");
+        if (repertoire.rechercherContact(code) != null) {
+            notificationLabel.setText("Erreur: " + "Le code entré existe déjà!");
+            return;
+        }
         
-        //System.out.println(repertoire);
+        repertoire.ajouterContact(new Etudiant(code, name, birth, address, email, tel, cycle, level));
+        notificationLabel.setText("Succès: Le contact a bien été ajouté!");
+        
     }//GEN-LAST:event_createButtonActionPerformed
-
-    private void notificationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationTextActionPerformed
-        notificationText.setText("Veuillez finir de remplir les informations du nouvel agent!");
-    }//GEN-LAST:event_notificationTextActionPerformed
 
     private void levelTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levelTextActionPerformed
         level = levelText.getText();
@@ -229,8 +227,8 @@ public class EtudiantCreationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cycleLabel;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JTextField levelText;
-    private javax.swing.JButton menuButton1;
-    private javax.swing.JTextField notificationText;
+    private javax.swing.JButton menuButton;
+    private javax.swing.JLabel notificationLabel;
     private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }

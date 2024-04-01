@@ -60,7 +60,10 @@ public class Enseignant extends Contact {
             statement.setString(7, getStatut());
             statement.setString(8, getCode());
 
-            statement.executeUpdate();
+            int result = statement.executeUpdate();
+            if (result == 0) {
+                throw new SQLException("L'enregistrement n'a pas eu lieu car il existe déjà un agent avec la même clé");
+            }
         }
     }
 

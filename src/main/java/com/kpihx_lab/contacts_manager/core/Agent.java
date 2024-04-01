@@ -74,7 +74,7 @@ public class Agent extends Contact {
         this.occupation = occupation;
     }
     
-    public static String[] getStatus() {
+    public static String[] getStatuts() {
         return statuts;
     }
     
@@ -103,7 +103,10 @@ public class Agent extends Contact {
             statement.setString(11, getOccupation());
             statement.setString(12, getCode());
 
-            statement.executeUpdate();
+            int result = statement.executeUpdate();
+            if (result == 0) {
+                throw new SQLException("L'enregistrement n'a pas eu lieu car il existe déjà un agent avec la même clé");
+            }
         }
     }
 

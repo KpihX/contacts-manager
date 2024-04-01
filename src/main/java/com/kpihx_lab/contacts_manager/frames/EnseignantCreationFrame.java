@@ -48,10 +48,10 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
         menuButton = new javax.swing.JButton();
         statutComboBox = new javax.swing.JComboBox<>(Enseignant.getStatuts());
         createButton = new javax.swing.JButton();
-        notificationText = new javax.swing.JTextField();
         statutLabel = new javax.swing.JLabel();
         menuButton1 = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
+        notificationLabel = new javax.swing.JLabel();
 
         menuButton.setText("Menu Principal");
         menuButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +61,7 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ajout Enseignant");
 
         statutComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,16 +69,10 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        createButton.setText("Creer");
+        createButton.setText("Finaliser");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
-            }
-        });
-
-        notificationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationTextActionPerformed(evt);
             }
         });
 
@@ -97,47 +92,46 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        notificationLabel.setText("Notifications:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(menuButton1)
-                .addGap(18, 18, 18)
-                .addComponent(returnButton)
-                .addGap(37, 37, 37)
-                .addComponent(createButton)
-                .addGap(51, 51, 51))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+            .addComponent(notificationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(80, 80, 80)
                 .addComponent(statutLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(statutComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addGap(70, 70, 70))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(menuButton1)
+                .addGap(18, 18, 18)
+                .addComponent(returnButton)
+                .addGap(28, 28, 28)
+                .addComponent(createButton)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statutLabel)
-                    .addComponent(statutComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                    .addComponent(statutComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statutLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
                     .addComponent(menuButton1)
-                    .addComponent(returnButton))
-                .addGap(30, 30, 30))
+                    .addComponent(returnButton)
+                    .addComponent(createButton))
+                .addGap(59, 59, 59)
+                .addComponent(notificationLabel))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void statutComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statutComboBoxActionPerformed
@@ -147,13 +141,14 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         statutComboBoxActionPerformed(evt);
 
+        if (repertoire.rechercherContact(code) != null) {
+            notificationLabel.setText("Erreur: " + "Le code entré existe déjà!");
+            return;
+        }
+        
         repertoire.ajouterContact(new Enseignant(code, name, birth, address, email, tel, statut));
-        notificationText.setText("Le contact a bien été ajouté!");
+        notificationLabel.setText("Succès: Le contact a bien été ajouté!");
     }//GEN-LAST:event_createButtonActionPerformed
-
-    private void notificationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationTextActionPerformed
-        notificationText.setText("Veuillez finir de remplir les informations du nouvel agent!");
-    }//GEN-LAST:event_notificationTextActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         new MainFrmApplication(repertoire).setVisible(true);
@@ -208,7 +203,7 @@ public class EnseignantCreationFrame extends javax.swing.JFrame {
     private javax.swing.JButton createButton;
     private javax.swing.JButton menuButton;
     private javax.swing.JButton menuButton1;
-    private javax.swing.JTextField notificationText;
+    private javax.swing.JLabel notificationLabel;
     private javax.swing.JButton returnButton;
     private javax.swing.JComboBox<String> statutComboBox;
     private javax.swing.JLabel statutLabel;

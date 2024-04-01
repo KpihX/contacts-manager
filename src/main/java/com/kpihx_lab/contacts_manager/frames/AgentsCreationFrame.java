@@ -57,11 +57,12 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         categoryText = new javax.swing.JTextField();
         salaryIndexText = new javax.swing.JTextField();
         occupationText = new javax.swing.JTextField();
-        statutComboBox = new javax.swing.JComboBox<>(Agent.getStatus());
-        notificationText = new javax.swing.JTextField();
+        statutComboBox = new javax.swing.JComboBox<>(Agent.getStatuts());
         menuButton = new javax.swing.JButton();
+        notificationLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ajout Agent");
 
         returnButton.setText("Revenir");
         returnButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +89,9 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         occupationLabel.setText("Occupation");
 
         salaryText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                salaryTextFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 salaryTextFocusLost(evt);
             }
@@ -105,6 +109,9 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         });
 
         salaryIndexText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                salaryIndexTextFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 salaryIndexTextFocusLost(evt);
             }
@@ -127,12 +134,6 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
             }
         });
 
-        notificationText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notificationTextActionPerformed(evt);
-            }
-        });
-
         menuButton.setText("Menu Principal");
         menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,45 +141,37 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
             }
         });
 
+        notificationLabel.setText("Notifications:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(menuButton)
-                .addGap(28, 28, 28)
-                .addComponent(returnButton)
-                .addGap(37, 37, 37)
-                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(menuButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(returnButton)
+                        .addGap(29, 29, 29)
+                        .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(occupationLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(salaryIndexLabel)
-                                .addGap(78, 78, 78)
-                                .addComponent(salaryIndexText))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(categoryLabel)
-                                    .addComponent(statutLabel)
-                                    .addComponent(salaryLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(salaryText)
-                                    .addComponent(statutComboBox, 0, 179, Short.MAX_VALUE)
-                                    .addComponent(categoryText))))
-                        .addGap(15, 15, 15))))
+                            .addComponent(occupationLabel)
+                            .addComponent(categoryLabel)
+                            .addComponent(statutLabel)
+                            .addComponent(salaryLabel)
+                            .addComponent(salaryIndexLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(salaryText)
+                            .addComponent(statutComboBox, 0, 179, Short.MAX_VALUE)
+                            .addComponent(categoryText)
+                            .addComponent(salaryIndexText)
+                            .addComponent(occupationText))))
+                .addGap(27, 27, 27))
+            .addComponent(notificationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,33 +180,33 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salaryLabel)
                     .addComponent(salaryText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statutLabel)
-                    .addComponent(statutComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(statutComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statutLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(categoryLabel)
                     .addComponent(categoryText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(salaryIndexLabel)
                     .addComponent(salaryIndexText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(occupationLabel)
-                    .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(notificationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(occupationText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupationLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(menuButton)
                     .addComponent(returnButton)
-                    .addComponent(createButton)
-                    .addComponent(menuButton))
-                .addGap(20, 20, 20))
+                    .addComponent(createButton))
+                .addGap(44, 44, 44)
+                .addComponent(notificationLabel))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void salaryTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaryTextActionPerformed
@@ -235,16 +228,18 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
             salaryIndexTextActionPerformed(evt);
             occupationTextActionPerformed(evt);
         } catch (IllegalArgumentException ex) {
-            notificationText.setText(ex.getMessage());
+            notificationLabel.setText("Erreur: " + ex.getMessage());
+            return;
+        }
+        
+        if (repertoire.rechercherContact(code) != null) {
+            notificationLabel.setText("Erreur: " + "Le code entré existe déjà!");
+            return;
         }
         
         repertoire.ajouterContact(new Agent(code, name, birth, address, email, tel, salary, statut, category, salaryIndex, occupation));
-        notificationText.setText("Le contact a bien été ajouté!");
+        notificationLabel.setText("Succès: Le contact a bien été ajouté!");
     }//GEN-LAST:event_createButtonActionPerformed
-
-    private void notificationTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationTextActionPerformed
-        notificationText.setText("Veuillez finir de remplir les informations du nouvel agent!");
-    }//GEN-LAST:event_notificationTextActionPerformed
 
     private void statutComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statutComboBoxActionPerformed
         statut = (String) statutComboBox.getSelectedItem();
@@ -273,10 +268,10 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         try {
             salary = Double.valueOf(salaryText.getText());
             if (salary <= 0) { 
-                notificationText.setText("Le salaire doit être strictement positif!");
+                notificationLabel.setText("Erreur: Le salaire doit être strictement positif!");
             }
         } catch (NumberFormatException ex) {
-            notificationText.setText("Veuillez entrer un nombre réel positif, comme salaire!");
+            notificationLabel.setText("Erreur: Veuillez entrer un nombre réel positif, comme salaire!");
         }
     }//GEN-LAST:event_salaryTextFocusLost
 
@@ -284,10 +279,10 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         try {
             salaryIndex = Integer.valueOf(salaryIndexText.getText());
             if (salaryIndex < 0) {
-                notificationText.setText("L'indice de salaire doit strictement positif!");
+                notificationLabel.setText("Erreur: L'indice de salaire doit strictement positif!");
             }
         } catch (NumberFormatException ex) {
-            notificationText.setText("L'indice de salaire doit être un entier strictement positif");
+            notificationLabel.setText("Erreur: L'indice de salaire doit être un entier strictement positif");
         }
     }//GEN-LAST:event_salaryIndexTextFocusLost
 
@@ -300,6 +295,14 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
         contactsCreationFrame.getMainFrmApplication().setVisible(true);
         dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
+
+    private void salaryTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_salaryTextFocusGained
+        notificationLabel.setText("Notifation:");
+    }//GEN-LAST:event_salaryTextFocusGained
+
+    private void salaryIndexTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_salaryIndexTextFocusGained
+        notificationLabel.setText("Notifation:");
+    }//GEN-LAST:event_salaryIndexTextFocusGained
 
     /**
      * @param args the command line arguments
@@ -341,7 +344,7 @@ public class AgentsCreationFrame extends javax.swing.JFrame {
     private javax.swing.JTextField categoryText;
     private javax.swing.JButton createButton;
     private javax.swing.JButton menuButton;
-    private javax.swing.JTextField notificationText;
+    private javax.swing.JLabel notificationLabel;
     private javax.swing.JLabel occupationLabel;
     private javax.swing.JTextField occupationText;
     private javax.swing.JButton returnButton;

@@ -44,8 +44,9 @@ public class MainFrmApplication extends javax.swing.JFrame {
         saveMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestionnaire de Contacts");
 
-        welcomeMessage.setText("Bienvenu dans ce Repertoire de Contacts");
+        welcomeMessage.setText("          Bienvenue dans ce Repertoire de Contacts!");
 
         buttonAddContact.setText("Ajouter un Contact");
         buttonAddContact.addActionListener(new java.awt.event.ActionListener() {
@@ -54,14 +55,14 @@ public class MainFrmApplication extends javax.swing.JFrame {
             }
         });
 
-        buttonShowContacts.setText("Afficher Contacts");
+        buttonShowContacts.setText("Afficher les Contacts");
         buttonShowContacts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonShowContactsActionPerformed(evt);
             }
         });
 
-        notificationLabel.setText("jLabel1");
+        notificationLabel.setText("Notifications:");
 
         fileMenu.setText("File");
         fileMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -86,37 +87,33 @@ public class MainFrmApplication extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(278, 278, 278)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addComponent(buttonAddContact)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonShowContacts)
-                .addGap(68, 68, 68))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(welcomeMessage))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(notificationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
+            .addComponent(notificationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(209, Short.MAX_VALUE)
+                .addComponent(welcomeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(welcomeMessage)
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonAddContact)
-                    .addComponent(buttonShowContacts))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(notificationLabel)
-                .addGap(16, 16, 16))
+                .addGap(80, 80, 80)
+                .addComponent(welcomeMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonShowContacts, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonAddContact, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(34, 34, 34)
+                .addComponent(notificationLabel))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddContactActionPerformed
@@ -130,24 +127,32 @@ public class MainFrmApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonShowContactsActionPerformed
 
     private void saveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuActionPerformed
-        notificationLabel.setText("Hi");        
-        try {
-            enregistrer();
-            notificationLabel.setText("L'enregistremnt s'est bien passé!");
-        } catch( SQLException ex) {
-            ex.printStackTrace();
-            notificationLabel.setText(ex.getMessage());
-        }
-        
+        enregistrer();
     }//GEN-LAST:event_saveMenuActionPerformed
 
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fileMenuActionPerformed
 
-    public void enregistrer() throws SQLException {
+    public void enregistrer(){
+        if (repertoire.getContacts().isEmpty()) {
+            notificationLabel.setText("RAS: Rien à enregistrer!"); 
+            return;
+        }
+        boolean error = false;
         for (Contact contact: repertoire.getContacts()) {
-            contact.insererContact(connection);
+            try {
+                contact.insererContact(connection);
+            } catch( SQLException ex) {
+                ex.printStackTrace();
+                error = true;
+            }
+        }
+        
+        if (error) {
+            notificationLabel.setText("Notes: Certaines insertions n'ont pas été efféctuées à cause de clé déjà existantes ou invalides! Plus d'infos dans la stackTrace.");
+        } else {
+            notificationLabel.setText("Succès: L'enregistrement s'est bien passé!");
         }
     }
     
