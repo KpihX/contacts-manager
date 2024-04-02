@@ -29,9 +29,9 @@ String user = "user";
 String password = "password";
 ```
 par celui avec les informations de connexion à votre BD; sans oublier de remplacer `localhost` dans la 1ère ligne de code par l'adresse ip du serveur si à jamais ce n'est pas un serveur local.
-- ouvrir un termanal dans le repertoire du projet
-- faire `cd target`
-- puis `java -jar contacts-manager.jar` (Pour lancer l'application)
+- recompiler et executer le projet avec votre IDE ou avec des commandes terminal maven.
+Une fois le `build` terminé, vous pourrez juste lancé le fichier `.jar` produit avec la commande: 
+`java -jar contacts-manager.jar` (dans le repertoire où il a été produit.)
 
 ## Exemples d'utilisation 🚀
 
