@@ -21,6 +21,14 @@ Le est réalisé avec l'outil maven; et donc peut être ouvert et reconfiguré e
 
 Pour juste l'exécuter, il faut:
 
+- créer une base de donnée `mysql` de nom `contacts_db` dans un serveur (serveur local par exemple)
+- aller dans la méthode `main` de la classe `MainFrmApplication.java` du package `frames` et remplacer le bout de code:
+```java
+String url = "jdbc:mysql://localhost:3306/contacts_db";
+String user = "user";
+String password = "password";
+```
+par celui avec les informations de connexion à votre BD; sans oublier de remplacer `localhost` dans la 1ère ligne de code par l'adresse ip du serveur si à jamais ce n'est pas un serveur local.
 - ouvrir un termanal dans le repertoire du projet
 - faire `cd target`
 - puis `java -jar contacts-manager.jar` (Pour lancer l'application)
