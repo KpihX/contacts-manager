@@ -161,8 +161,8 @@ public class MainFrmApplication extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         String url = "jdbc:mysql://localhost:3306/contacts_db";
-        String user = "root";
-        String password = "|yOUkNOW0";
+        String user = "user";
+        String password = "password";
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
